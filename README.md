@@ -7,7 +7,7 @@
 
 ---
 
-**Автор:** Климкин Егор <br>
+**Автор:** Климкин Егор (KevY5)<br>
 **Связь для уточнения деталей по проекту:** <a href="https://t.me/ne_sravnim" target="_blank" rel="noopener noreferrer">Telegram</a>
 
 ---
