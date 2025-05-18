@@ -15,3 +15,52 @@
 3. Разработчики: для интеграции данных о книгах в свои приложения (например, рекомендательные системы, сервисы сравнения цен).
 4. Энтузиасты и коллекционеры книг: для автоматизированного отслеживания новинок, наличия или цен на интересующие издания.
 5. Специалисты по Data Science / Machine Learning: для сбора датасетов для обучения моделей.
+
+## Ход выполнения проекта
+
+Проект реализуется в несколько этапов. Ниже описан первый этап, посвященный сбору ссылок на книги.
+
+### Этап 1: Сбор URL-адресов книг (`Chitay-gorod-get-link.py`)
+
+Первым шагом была разработка скрипта на языке Python под названием `Chitay-gorod-get-link.py`.
+
+**Назначение скрипта:**
+Основная задача этого скрипта – автоматический анализ сайта [https://www.chitai-gorod.ru/](https://www.chitai-gorod.ru/) для сбора прямых ссылок на страницы отдельных книг. Скрипт обходит каталоги и страницы пагинации для максимально полного охвата ассортимента.
+
+**Результат работы:**
+Собранные URL-адреса сохраняются в файл `books.json` в формате списка. Этот файл затем используется на следующем этапе для извлечения детальной информации по каждой книге.
+
+**Методы обхода ограничений:**
+Для имитации поведения обычного пользователя и снижения вероятности блокировки со стороны сайта, в скрипте `Chitay-gorod-get-link.py` применяются следующие техники:
+
+1.  **Ротация User-Agent:**
+    Скрипт использует список разнообразных User-Agent'ов, чтобы каждый запрос выглядел как запрос от нового браузера или устройства. Это помогает избежать обнаружения по повторяющемуся User-Agent.
+    ```python
+    USER_AGENTS = [
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:109.0) Gecko/20100101 Firefox/120.0',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Safari/605.1.15',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (Windows NT 10.0; rv:109.0) Gecko/20100101 Firefox/119.0',
+        'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36',
+        'Mozilla/5.0 (iPhone; CPU iPhone OS 17_2 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/17.2 Mobile/15E148 Safari/604.1',
+        'Mozilla/5.0 (Linux; Android 13; SM-S908B) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Mobile Safari/537.36',
+        'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0',
+        'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Firefox/119.0',
+    ]
+    ```
+
+2.  **Использование HTTP-заголовков:**
+    Отправляются стандартные HTTP-заголовки, характерные для браузеров, такие как `Accept`, `Accept-Language`, `Cache-Control` и `Referer`, для большей достоверности запросов.
+    ```python
+    HEADERS = {
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/avif,image/webp,image/apng,*/*;q=0.8,application/signed-exchange;v=b3;q=0.7',
+        'Accept-Language': 'en-US,en;q=0.9,ru;q=0.8', # Приоритет английскому, русский тоже принимается
+        'Cache-Control': 'max-age=0', # Запрашивать свежую версию
+        'Referer': 'https://www.chitai-gorod.ru/', # Указание, откуда пришел запрос
+    }
+    ```
+3. **Использование HTTP или SOCKS5 прокси**
+### Демонстрация работы `Chitay-gorod-get-link.py`
+![image](https://github.com/user-attachments/assets/03de2d70-d4dc-4004-a341-924ac7ec4de2)
+---
