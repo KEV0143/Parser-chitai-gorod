@@ -2,12 +2,13 @@
 
 <div align="center">
 
-Инструмент для сбора информации о книжном ассортименте с онлайн-магазина "Читай-город" ([chitai-gorod.ru](https://www.chitai-gorod.ru/)).
+Инструмент для сбора информации о книжном ассортименте <br>
+с онлайн-магазина "Читай-город" ([chitai-gorod.ru](https://www.chitai-gorod.ru/)).
 
 ---
 
 **Автор:** Климкин Егор <br>
-**Связь для уточнения деталей по проекту:** [Telegram](https://t.me/ne_sravnim)
+**Связь для уточнения деталей по проекту:** <a href="https://t.me/ne_sravnim" target="_blank" rel="noopener noreferrer">Telegram</a>
 
 ---
 </div>
